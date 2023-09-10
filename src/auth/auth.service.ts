@@ -51,8 +51,12 @@ export class AuthService {
     // compare the password hash with argon
 
     //compare the password hash with argon
-    const pwMatches = await argon.verify((await user).hash, dto.password);
-
+    // const pwMatches = await argon.verify((await user).hash, dto.password);
+    console.log(user);
+    const pwMatches = await argon.verify(
+      (await user).hash,
+      dto.password,
+    );
     // if password doesnt match throw error
     if (!pwMatches) throw new ForbiddenException('Invalid credentials');
 
